@@ -4,7 +4,7 @@ layout: page
 ---
 ![Profile Image]({% if site.external-image %}{{ site.picture }}{% else %}{{ site.url }}/{{ site.picture }}{% endif %})
 
-<p>I am Nithin Bobbiligama, and i hold a Master’s degree in Computer Science from the University of Dayton, Which i completed in May 2023. With over 5+ years of experience as a Data Engineer, I have worked across healthcare, insurance, and financial domains, specializing in building and optimizing scalable data pipelines. 
+<p>I am Nithin Bobbiligama, and i hold a Master’s degree in Computer Science from the University of Dayton, Which i completed in May 2023. With around 6 years of experience as a Data Engineer, I have worked across healthcare, insurance, and financial domains, specializing in building and optimizing scalable data pipelines. 
 
 Currently, I am working as an Azure Data Engineer at Nationwide in Columbus, In this role, I've contributed to the modernization of enterprise data systems by designing and optimizing ETL pipelines with Azure Data Factory, Databricks, and Synapse to power real-time reporting use cases. I have developed event-driven architectures using Azure Functions and Kafka, automated ingestion frameworks with Python to reduce data latency, and delivered interactive dashboards in Power BI that improved business decision-making. I also set up CI/CD pipelines with Azure DevOps to ensure faster, more reliable deployments.
 
