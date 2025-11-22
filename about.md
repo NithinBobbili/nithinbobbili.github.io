@@ -34,5 +34,5 @@ I am passionate about solving complex data problems, enabling real-time insights
 	<i>Aug 2021 - May 2023</i></li>
 	<li><strong>Mahaveer Institute Of Science and Technology, Hyderabad, India.</strong><br>
 	Bachelor in Computer Science.<br>
-	<br><i>Aug 2015- May 2019</i></li>
+	<i>Aug 2015- May 2019</i></li>
 </ul>
