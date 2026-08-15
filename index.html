@@ -12,6 +12,9 @@
 </head>
 <body>
 
+<div class="ambient" aria-hidden="true"></div>
+<div class="dot-grid" aria-hidden="true"></div>
+
 <div class="pipeline-rail" aria-hidden="true">
   <svg class="pipeline-svg" viewBox="0 0 2 1000" preserveAspectRatio="none">
     <line x1="1" y1="0" x2="1" y2="1000" class="pipeline-track"/>
@@ -61,13 +64,18 @@
           <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
             <path d="M0,0 L10,5 L0,10 z" fill="var(--accent)"></path>
           </marker>
+          <radialGradient id="packetGlow">
+            <stop offset="0%" stop-color="var(--accent)" stop-opacity="1"/>
+            <stop offset="100%" stop-color="var(--accent)" stop-opacity="0"/>
+          </radialGradient>
         </defs>
-        <line x1="70" y1="40" x2="215" y2="40" class="flow-line" marker-end="url(#arrow)"/>
-        <line x1="70" y1="110" x2="215" y2="110" class="flow-line" marker-end="url(#arrow)"/>
-        <line x1="70" y1="180" x2="215" y2="180" class="flow-line" marker-end="url(#arrow)"/>
-        <line x1="285" y1="40" x2="390" y2="105" class="flow-line" marker-end="url(#arrow)"/>
-        <line x1="285" y1="110" x2="390" y2="110" class="flow-line" marker-end="url(#arrow)"/>
-        <line x1="285" y1="180" x2="390" y2="115" class="flow-line" marker-end="url(#arrow)"/>
+
+        <path id="p1" d="M70,40 L215,40" class="flow-line" marker-end="url(#arrow)"/>
+        <path id="p2" d="M70,110 L215,110" class="flow-line" marker-end="url(#arrow)"/>
+        <path id="p3" d="M70,180 L215,180" class="flow-line" marker-end="url(#arrow)"/>
+        <path id="p4" d="M285,40 L390,105" class="flow-line" marker-end="url(#arrow)"/>
+        <path id="p5" d="M285,110 L390,110" class="flow-line" marker-end="url(#arrow)"/>
+        <path id="p6" d="M285,180 L390,115" class="flow-line" marker-end="url(#arrow)"/>
 
         <g class="flow-node">
           <rect x="10" y="24" width="60" height="32" rx="6"></rect>
@@ -91,6 +99,13 @@
           <rect x="390" y="88" width="60" height="32" rx="6"></rect>
           <text x="420" y="108">Power BI</text>
         </g>
+
+        <circle r="4" fill="url(#packetGlow)"><animateMotion dur="2.4s" begin="0s" repeatCount="indefinite"><mpath href="#p1"/></animateMotion></circle>
+        <circle r="4" fill="url(#packetGlow)"><animateMotion dur="2.4s" begin="0.5s" repeatCount="indefinite"><mpath href="#p2"/></animateMotion></circle>
+        <circle r="4" fill="url(#packetGlow)"><animateMotion dur="2.4s" begin="1s" repeatCount="indefinite"><mpath href="#p3"/></animateMotion></circle>
+        <circle r="3.5" fill="url(#packetGlow)"><animateMotion dur="1.6s" begin="2.4s" repeatCount="indefinite"><mpath href="#p4"/></animateMotion></circle>
+        <circle r="3.5" fill="url(#packetGlow)"><animateMotion dur="1.6s" begin="2.9s" repeatCount="indefinite"><mpath href="#p5"/></animateMotion></circle>
+        <circle r="3.5" fill="url(#packetGlow)"><animateMotion dur="1.6s" begin="3.4s" repeatCount="indefinite"><mpath href="#p6"/></animateMotion></circle>
       </svg>
     </div>
   </section>

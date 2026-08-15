@@ -47,3 +47,15 @@ const navObserver = new IntersectionObserver((entries) => {
 }, { rootMargin: '-40% 0px -50% 0px' });
 
 document.querySelectorAll('main .section').forEach((s) => navObserver.observe(s));
+
+// Subtle cursor-reactive glow in hero
+const hero = document.querySelector('.hero');
+if (hero && window.matchMedia('(pointer: fine)').matches) {
+  hero.addEventListener('mousemove', (e) => {
+    const rect = hero.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+    hero.style.setProperty('--mx', x + '%');
+    hero.style.setProperty('--my', y + '%');
+  });
+}
