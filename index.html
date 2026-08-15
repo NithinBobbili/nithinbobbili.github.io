@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nithin Bobbiligama — Data Engineer</title>
+<meta name="description" content="Nithin Bobbiligama — Data Engineer specializing in cloud-native pipelines, real-time data systems, and scalable ETL architecture.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="pipeline-rail" aria-hidden="true">
+  <svg class="pipeline-svg" viewBox="0 0 2 1000" preserveAspectRatio="none">
+    <line x1="1" y1="0" x2="1" y2="1000" class="pipeline-track"/>
+    <line x1="1" y1="0" x2="1" y2="1000" class="pipeline-flow"/>
+  </svg>
+</div>
+
+<nav class="topnav">
+  <a href="#top" class="brand">NB<span class="brand-dot">.</span></a>
+  <div class="nav-links">
+    <a href="#about"><span class="nav-num">01</span>About</a>
+    <a href="#skills"><span class="nav-num">02</span>Skills</a>
+    <a href="#experience"><span class="nav-num">03</span>Experience</a>
+    <a href="#projects"><span class="nav-num">04</span>Projects</a>
+    <a href="#education"><span class="nav-num">05</span>Education</a>
+    <a href="#contact"><span class="nav-num">06</span>Contact</a>
+  </div>
+  <a href="assets/resume.pdf" class="nav-resume" target="_blank" rel="noopener">Resume</a>
+  <button class="nav-toggle" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero" data-node="source">
+    <div class="hero-inner">
+      <p class="eyebrow"><span class="dot dot-live"></span>currently streaming from Columbus, OH</p>
+      <h1 class="hero-title">
+        I move data<br>
+        that <span class="accent">moves decisions.</span>
+      </h1>
+      <p class="hero-sub">
+        Nithin Bobbiligama — Data Engineer building cloud-native pipelines, real-time
+        event systems, and the quiet infrastructure that makes dashboards trustworthy.
+      </p>
+      <div class="hero-actions">
+        <a href="#projects" class="btn btn-primary">See the work</a>
+        <a href="#contact" class="btn btn-ghost">Get in touch</a>
+      </div>
+    </div>
+
+    <div class="hero-diagram" aria-hidden="true">
+      <svg viewBox="0 0 460 220" class="flow-svg">
+        <defs>
+          <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="var(--accent)"></path>
+          </marker>
+        </defs>
+        <line x1="70" y1="40" x2="215" y2="40" class="flow-line" marker-end="url(#arrow)"/>
+        <line x1="70" y1="110" x2="215" y2="110" class="flow-line" marker-end="url(#arrow)"/>
+        <line x1="70" y1="180" x2="215" y2="180" class="flow-line" marker-end="url(#arrow)"/>
+        <line x1="285" y1="40" x2="390" y2="105" class="flow-line" marker-end="url(#arrow)"/>
+        <line x1="285" y1="110" x2="390" y2="110" class="flow-line" marker-end="url(#arrow)"/>
+        <line x1="285" y1="180" x2="390" y2="115" class="flow-line" marker-end="url(#arrow)"/>
+
+        <g class="flow-node">
+          <rect x="10" y="24" width="60" height="32" rx="6"></rect>
+          <text x="40" y="44">Kafka</text>
+        </g>
+        <g class="flow-node">
+          <rect x="10" y="94" width="60" height="32" rx="6"></rect>
+          <text x="40" y="114">ADF</text>
+        </g>
+        <g class="flow-node">
+          <rect x="10" y="164" width="60" height="32" rx="6"></rect>
+          <text x="40" y="184">APIs</text>
+        </g>
+
+        <g class="flow-node flow-node-main">
+          <rect x="215" y="90" width="70" height="40" rx="6"></rect>
+          <text x="250" y="114">Databricks</text>
+        </g>
+
+        <g class="flow-node flow-node-out">
+          <rect x="390" y="88" width="60" height="32" rx="6"></rect>
+          <text x="420" y="108">Power BI</text>
+        </g>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="section" id="about" data-node="about">
+    <div class="section-head">
+      <span class="section-eyebrow">01 / About</span>
+      <h2>Six years of turning raw feeds into decisions people trust.</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-photo">
+        <img src="assets/images/nb.jpg" alt="Portrait of Nithin Bobbiligama">
+      </div>
+      <div class="about-copy">
+        <p>
+          I hold a Master's in Computer Science from the University of Dayton (2023) and have
+          spent the years since building data infrastructure across healthcare, insurance, and
+          financial services — domains where a broken pipeline isn't just annoying, it's a bad
+          decision waiting to happen.
+        </p>
+        <p>
+          Right now I'm an Azure Data Engineer at Nationwide in Columbus, where I design and
+          optimize ETL pipelines with Azure Data Factory, Databricks, and Synapse, build
+          event-driven architecture with Azure Functions and Kafka, and ship the CI/CD that
+          gets it all deployed safely and often.
+        </p>
+        <p>
+          Before that, I worked on Humana's healthcare analytics platform — real-time pipelines,
+          cost-efficiency tuning, and REST API integrations that shaved seconds off dashboards
+          people actually rely on during the workday.
+        </p>
+        <p>
+          I'm looking for full-time work where I can keep doing exactly this: solving the
+          unglamorous, high-stakes problem of getting the right data to the right place, fast
+          and correctly.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="section" id="skills" data-node="skills">
+    <div class="section-head">
+      <span class="section-eyebrow">02 / Skills</span>
+      <h2>The stack, end to end.</h2>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <h3>Languages &amp; Processing</h3>
+        <div class="tag-row">
+          <span class="tag">Python</span><span class="tag">Scala</span><span class="tag">Java</span>
+          <span class="tag">SQL</span><span class="tag">Apache Spark</span><span class="tag">PySpark</span>
+          <span class="tag">Hadoop</span><span class="tag">Hive</span><span class="tag">Kafka</span>
+          <span class="tag">Flink</span><span class="tag">Airflow</span><span class="tag">Oozie</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3>Databases &amp; Warehousing</h3>
+        <div class="tag-row">
+          <span class="tag">Azure Synapse</span><span class="tag">Snowflake</span><span class="tag">Redshift</span>
+          <span class="tag">PostgreSQL</span><span class="tag">SQL Server</span><span class="tag">DynamoDB</span>
+          <span class="tag">MongoDB</span><span class="tag">HBase</span><span class="tag">Teradata</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3>Cloud Platforms</h3>
+        <div class="tag-row">
+          <span class="tag">Azure ADF</span><span class="tag">Databricks</span><span class="tag">Logic Apps</span>
+          <span class="tag">AWS EMR</span><span class="tag">Glue</span><span class="tag">Lambda</span>
+          <span class="tag">S3</span><span class="tag">Kinesis</span><span class="tag">CloudWatch</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3>DevOps &amp; Delivery</h3>
+        <div class="tag-row">
+          <span class="tag">Azure DevOps</span><span class="tag">Jenkins</span><span class="tag">GitHub Actions</span>
+          <span class="tag">Docker</span><span class="tag">Kubernetes</span><span class="tag">AWS EKS</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3>Practice &amp; Methodology</h3>
+        <div class="tag-row">
+          <span class="tag">Data Quality Frameworks</span><span class="tag">RCA</span>
+          <span class="tag">Governance</span><span class="tag">Agile/Scrum</span><span class="tag">Kanban</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="section" id="experience" data-node="experience">
+    <div class="section-head">
+      <span class="section-eyebrow">03 / Experience</span>
+      <h2>Where the pipelines have run.</h2>
+    </div>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-marker"></div>
+        <div class="timeline-content">
+          <p class="timeline-date">2023 — Present</p>
+          <h3>Azure Data Engineer, Nationwide</h3>
+          <p class="timeline-loc">Columbus, OH</p>
+          <p>
+            Modernizing enterprise data systems: designing and optimizing ETL pipelines with
+            Azure Data Factory, Databricks, and Synapse to power real-time reporting. Built
+            event-driven architecture using Azure Functions and Kafka, automated ingestion
+            frameworks in Python to cut data latency, and delivered Power BI dashboards that
+            changed how the business made decisions. Set up CI/CD with Azure DevOps for faster,
+            more reliable deployments.
+          </p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-marker"></div>
+        <div class="timeline-content">
+          <p class="timeline-date">Prior</p>
+          <h3>Data Engineer, Humana</h3>
+          <p class="timeline-loc">Healthcare Analytics</p>
+          <p>
+            Implemented real-time pipelines for healthcare analytics, optimized for cost
+            efficiency, and integrated REST APIs to speed up dashboard delivery.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="section" id="projects" data-node="projects">
+    <div class="section-head">
+      <span class="section-eyebrow">04 / Projects</span>
+      <h2>Outside the day job.</h2>
+    </div>
+    <div class="projects-grid">
+      <article class="project-card">
+        <div class="project-card-top">
+          <h3>Data Analysis of Disasters</h3>
+          <a href="https://github.com/sachinsuresh10/Data-Analysis-and-Disaster" target="_blank" rel="noopener" class="project-link" aria-label="View on GitHub">↗</a>
+        </div>
+        <p>
+          Cleaned and imputed disaster data with Random Forest, reduced dimensionality with
+          PCA, and classified event types with 98.6% accuracy using XGBoost — with linear
+          regression modeling reaching an adjusted R² of 0.89 on loss-vs-injury correlation.
+        </p>
+        <div class="tag-row">
+          <span class="tag tag-sm">Python</span><span class="tag tag-sm">XGBoost</span>
+          <span class="tag tag-sm">PCA</span><span class="tag tag-sm">Random Forest</span>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section class="section" id="education" data-node="education">
+    <div class="section-head">
+      <span class="section-eyebrow">05 / Education</span>
+      <h2>Foundations.</h2>
+    </div>
+    <div class="edu-list">
+      <div class="edu-item">
+        <div>
+          <h3>University of Dayton</h3>
+          <p class="edu-loc">Dayton, OH, United States</p>
+          <p class="edu-degree">M.S. in Computer Science</p>
+        </div>
+        <p class="edu-date">Aug 2021 — May 2023</p>
+      </div>
+      <div class="edu-item">
+        <div>
+          <h3>Mahaveer Institute of Science and Technology</h3>
+          <p class="edu-loc">Hyderabad, India</p>
+          <p class="edu-degree">B.S. in Computer Science</p>
+        </div>
+        <p class="edu-date">Aug 2015 — May 2019</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section section-contact" id="contact" data-node="contact">
+    <div class="section-head">
+      <span class="section-eyebrow">06 / Contact</span>
+      <h2>Let's ship something reliable.</h2>
+    </div>
+    <p class="contact-sub">
+      Open to full-time Data Engineering roles. The fastest way to reach me is email.
+    </p>
+    <div class="contact-links">
+      <a href="mailto:nithinbobbili007@gmail.com" class="btn btn-primary">nithinbobbili007@gmail.com</a>
+    </div>
+    <div class="social-row">
+      <a href="https://github.com/NithinBobbili" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://linkedin.com/in/nithin-bobbili07" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="assets/resume.pdf" target="_blank" rel="noopener">Resume</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <p>Built &amp; deployed on GitHub Pages · © <span id="year"></span> Nithin Bobbiligama</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
