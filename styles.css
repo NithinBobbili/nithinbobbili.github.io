@@ -148,7 +148,7 @@ main, .topnav, .footer, .pipeline-rail { position: relative; z-index: 1; }
 .nav-links { display: flex; gap: 28px; }
 .nav-links a {
   font-family: var(--font-mono);
-  font-size: 13px;
+  font-size: 15.5px;
   color: var(--text-dim);
   display: flex;
   align-items: baseline;
