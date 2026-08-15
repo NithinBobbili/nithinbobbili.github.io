@@ -1,11 +1,114 @@
-# Deploying to GitHub Pages
+# Nithin Bobbiligama — Portfolio
 
-1. Copy all files in this folder into the root of your `nithinbobbili.github.io` repo
-   (replace the existing Jekyll files — you can delete `_layouts`, `_includes`, `_sass`,
-   `_posts`, `_config.yml`, `Gemfile`, etc. since this is now a plain static site with
-   no build step).
-2. Commit and push to the `main` branch.
-3. In your repo's Settings → Pages, make sure the source is set to deploy from `main` / root.
-4. Your site will be live at https://nithinbobbili.github.io within a minute or two.
+A static, single-page portfolio site. No build step, no Jekyll, no npm —
+just `index.html`, `styles.css`, `script.js`, and an `assets/` folder,
+hosted directly on GitHub Pages.
 
-No Jekyll, no npm, no build — just static HTML/CSS/JS.
+Live at: **https://nithinbobbili.github.io**
+
+---
+
+## File structure
+
+```
+/
+├── index.html          — all page content and structure
+├── styles.css           — all styling (colors, layout, animations)
+├── script.js             — scroll effects, mobile menu, nav highlighting
+├── favicon.svg          — browser tab icon
+├── README.md
+└── assets/
+    ├── resume.pdf         — linked from the nav and Contact section
+    └── images/
+        ├── nb.jpg          — hero + about photo
+        └── nithin.jpg      — unused backup photo (safe to delete)
+```
+
+Every path in `index.html` is **case-sensitive** and must match exactly:
+`assets/images/nb.jpg` and `assets/resume.pdf`. GitHub Pages runs on a
+case-sensitive filesystem, so `Assets/Images/NB.jpg` will 404 even though
+it looks right in a folder listing.
+
+---
+
+## How this was deployed (manual steps, no git command line)
+
+This was set up entirely through the GitHub website — no terminal, no
+`git push`. These are the exact steps used, kept here so future updates
+can follow the same process.
+
+### 1. Removed the old Jekyll site
+The repo originally ran on Jekyll (`_layouts`, `_includes`, `_sass`,
+`_posts`, `_config.yml`, `Gemfile`, etc.). Each of those files/folders was
+opened in the GitHub UI and deleted individually, committing straight to
+`main`.
+
+### 2. Uploaded the new static site
+From the repo's main page:
+**Add file → Upload files** → dragged in `index.html`, `styles.css`,
+`script.js` → scrolled down → wrote a commit message → **Commit changes**
+(committed directly to `main`, no pull request).
+
+### 3. Uploaded the assets folder
+Same **Add file → Upload files** flow, dragging in the `assets` folder
+(containing `images/` and `resume.pdf`).
+
+**What went wrong the first time, for reference:** the browser upload
+created `assests/Image/` (typo + wrong capitalization) instead of
+`assets/images/`. This was fixed by opening each file in the GitHub UI,
+clicking the pencil (edit) icon, and changing the *filename field* at the
+top to the full correct path (e.g. typing `assets/images/nb.jpg` into the
+name box moves the file into that path and creates the folder
+automatically). Each rename was committed individually.
+
+### 4. Added the favicon
+Uploaded `favicon.svg` to the repo root the same way (Add file → Upload
+files).
+
+---
+
+## How to make a future edit (no git required)
+
+1. Go to https://github.com/NithinBobbili/nithinbobbili.github.io
+2. Click the file you want to change (`index.html`, `styles.css`, or
+   `script.js`)
+3. Click the **pencil (edit)** icon in the top-right of the file view
+4. Make your change, scroll down, add a short commit message
+5. Click **Commit changes...** → commit directly to `main`
+6. Wait ~1 minute, then visit the live site and hard-refresh
+   (`Ctrl+Shift+R` / `Cmd+Shift+R`) to bypass the browser cache
+
+To add a brand-new file (e.g. a new project image), use
+**Add file → Upload files** from the repo's main page instead.
+
+---
+
+## Checking the site settings
+
+If the site ever stops updating or shows a 404:
+
+1. Go to the repo → **Settings → Pages**
+2. **Source** should be "Deploy from a branch"
+3. **Branch** should be `main`, folder `/ (root)`
+4. If those look right but the site is still stale, it's almost always a
+   browser cache — hard refresh, or try an incognito window.
+
+---
+
+## Content sections in `index.html`
+
+| Section | Element ID | What it holds |
+|---|---|---|
+| Hero | `#top` | Headline, intro, hero photo, stats strip, pipeline diagram |
+| About | `#about` | Bio paragraphs |
+| Skills | `#skills` | Tagged skill categories |
+| Experience | `#experience` | Timeline of roles |
+| Projects | `#projects` | Project cards |
+| Education | `#education` | Degree list |
+| Contact | `#contact` | Email + social links |
+
+To add a new project, copy an existing `<article class="project-card">`
+block inside `#projects` and edit its contents.
+
+To add a new skill tag, add another `<span class="tag">Name</span>`
+inside the relevant `.tag-row` in `#skills`.
