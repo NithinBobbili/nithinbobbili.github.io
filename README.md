@@ -37,31 +37,18 @@ This was set up entirely through the GitHub website — no terminal, no
 `git push`. These are the exact steps used, kept here so future updates
 can follow the same process.
 
-### 1. Removed the old Jekyll site
-The repo originally ran on Jekyll (`_layouts`, `_includes`, `_sass`,
-`_posts`, `_config.yml`, `Gemfile`, etc.). Each of those files/folders was
-opened in the GitHub UI and deleted individually, committing straight to
-`main`.
 
-### 2. Uploaded the new static site
+### 1. Uploaded the new static site
 From the repo's main page:
 **Add file → Upload files** → dragged in `index.html`, `styles.css`,
 `script.js` → scrolled down → wrote a commit message → **Commit changes**
 (committed directly to `main`, no pull request).
 
-### 3. Uploaded the assets folder
+### 2. Uploaded the assets folder
 Same **Add file → Upload files** flow, dragging in the `assets` folder
 (containing `images/` and `resume.pdf`).
 
-**What went wrong the first time, for reference:** the browser upload
-created `assests/Image/` (typo + wrong capitalization) instead of
-`assets/images/`. This was fixed by opening each file in the GitHub UI,
-clicking the pencil (edit) icon, and changing the *filename field* at the
-top to the full correct path (e.g. typing `assets/images/nb.jpg` into the
-name box moves the file into that path and creates the folder
-automatically). Each rename was committed individually.
-
-### 4. Added the favicon
+### 3. Added the favicon
 Uploaded `favicon.svg` to the repo root the same way (Add file → Upload
 files).
 
