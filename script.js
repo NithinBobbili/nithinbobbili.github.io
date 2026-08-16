@@ -91,17 +91,26 @@ const countObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.6 });
 counters.forEach((c) => countObserver.observe(c));
 
-// Tilt hover on cards
-if (window.matchMedia('(pointer: fine)').matches) {
-  document.querySelectorAll('.skill-card, .project-card, .cert-card').forEach((card) => {
+// 3D tilt hover on cards, with cursor-tracked glare and layered depth
+if (window.matchMedia('(pointer: fine)').matches && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  const tiltTargets = '.skill-card, .project-card, .cert-card, .metric-tile, .hero-photo-card';
+  document.querySelectorAll(tiltTargets).forEach((card) => {
+    card.classList.add('tilt-3d');
+    const glare = document.createElement('div');
+    glare.className = 'tilt-glare';
+    card.appendChild(glare);
+
     card.addEventListener('mousemove', (e) => {
       const rect = card.getBoundingClientRect();
       const x = (e.clientX - rect.left) / rect.width - 0.5;
       const y = (e.clientY - rect.top) / rect.height - 0.5;
-      card.style.transform = `perspective(600px) rotateX(${(-y * 6).toFixed(2)}deg) rotateY(${(x * 6).toFixed(2)}deg) translateY(-2px)`;
+      const rotateIntensity = card.classList.contains('hero-photo-card') ? 5 : 10;
+      card.style.transform = `perspective(700px) rotateX(${(-y * rotateIntensity).toFixed(2)}deg) rotateY(${(x * rotateIntensity).toFixed(2)}deg) translateY(-4px) scale(1.015)`;
+      glare.style.background = `radial-gradient(circle at ${(x + 0.5) * 100}% ${(y + 0.5) * 100}%, rgba(255,255,255,0.16), transparent 55%)`;
     });
     card.addEventListener('mouseleave', () => {
       card.style.transform = '';
+      glare.style.background = 'transparent';
     });
   });
 }

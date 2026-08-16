@@ -1346,3 +1346,58 @@ html { scrollbar-width: thin; scrollbar-color: var(--accent-dim) var(--bg-deep);
 @media (max-width: 860px) {
   .project-card-featured { grid-template-columns: 1fr; padding: 22px; }
 }
+
+/* ===== 3D tilt cards + glare ===== */
+.tilt-3d {
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.3, 1), box-shadow 0.25s ease;
+  will-change: transform;
+}
+.tilt-3d:hover {
+  box-shadow: 0 24px 48px -20px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.06) inset;
+}
+.tilt-glare {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 5;
+  transition: opacity 0.2s ease;
+  mix-blend-mode: overlay;
+}
+
+/* Layered depth: icons and headings pop toward the viewer on hover */
+.skill-card.tilt-3d h3,
+.cert-card.tilt-3d .cert-issuer,
+.cert-card.tilt-3d h3,
+.project-card.tilt-3d h3 {
+  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.3, 1);
+  transform: translateZ(0);
+}
+.skill-card.tilt-3d:hover h3 { transform: translateZ(28px); }
+.cert-card.tilt-3d:hover .cert-issuer,
+.cert-card.tilt-3d:hover h3 { transform: translateZ(24px); }
+.project-card.tilt-3d:hover h3 { transform: translateZ(24px); }
+
+.skill-card.tilt-3d .tag-row,
+.project-card.tilt-3d p,
+.project-card.tilt-3d .tag-row {
+  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.3, 1);
+  transform: translateZ(0);
+}
+.skill-card.tilt-3d:hover .tag-row { transform: translateZ(12px); }
+.project-card.tilt-3d:hover p,
+.project-card.tilt-3d:hover .tag-row { transform: translateZ(10px); }
+
+.metric-tile.tilt-3d:hover .metric-value { transform: translateZ(20px); }
+.metric-value { transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.3, 1); display: block; }
+
+.hero-photo-card.tilt-3d { transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.3, 1); }
+.hero-photo-card.tilt-3d:hover {
+  box-shadow: 0 0 0 1px rgba(79,209,197,0.15), 0 30px 60px -20px rgba(79,209,197,0.4);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tilt-3d { transform: none !important; transition: none; }
+}
