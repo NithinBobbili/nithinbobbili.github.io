@@ -22,12 +22,28 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=5">
+<link rel="stylesheet" href="styles.css?v=7">
 </head>
 <body>
 
 <div class="ambient" aria-hidden="true"></div>
 <div class="dot-grid" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<button class="cmdk-hint" id="cmdk-hint" type="button" aria-label="Open quick navigation">
+  <kbd>⌘</kbd><kbd>K</kbd> <span>to navigate</span>
+</button>
+
+<div class="cmdk-overlay" id="cmdk-overlay">
+  <div class="cmdk-modal" role="dialog" aria-modal="true" aria-label="Quick navigation">
+    <div class="cmdk-input-row">
+      <span class="cmdk-icon">⌘</span>
+      <input type="text" id="cmdk-input" class="cmdk-input" placeholder="Jump to a section, or open a link..." autocomplete="off">
+      <kbd class="cmdk-esc">esc</kbd>
+    </div>
+    <div class="cmdk-list" id="cmdk-list"></div>
+  </div>
+</div>
 
 <div class="pipeline-rail" aria-hidden="true">
   <svg class="pipeline-svg" viewBox="0 0 2 1000" preserveAspectRatio="none">
@@ -59,9 +75,9 @@
   <section class="hero" data-node="source">
     <div class="hero-inner">
       <p class="eyebrow"><span class="dot dot-live"></span>Available for full-time roles · The Colony, TX</p>
-      <h1 class="hero-title">
-        I move data<br>
-        that <span class="accent">moves decisions.</span>
+      <h1 class="hero-title" id="hero-title">
+        <span class="reveal-word">I</span> <span class="reveal-word">move</span> <span class="reveal-word">data</span><br>
+        <span class="reveal-word">that</span> <span class="reveal-word accent">moves</span> <span class="reveal-word accent">decisions.</span>
       </h1>
       <p class="hero-sub">
         Nithin Bobbiligama — Senior Data Engineer architecting cloud-native lakehouse
@@ -74,11 +90,11 @@
       </div>
       <div class="hero-stats">
         <div class="hero-stat">
-          <span class="hero-stat-num">6+</span>
+          <span class="hero-stat-num" data-count="6" data-suffix="+">0</span>
           <span class="hero-stat-label">Years in data engineering</span>
         </div>
         <div class="hero-stat">
-          <span class="hero-stat-num">6</span>
+          <span class="hero-stat-num" data-count="6">0</span>
           <span class="hero-stat-label">Cloud &amp; data certifications</span>
         </div>
         <div class="hero-stat">
@@ -265,66 +281,90 @@
       <h2>Where the pipelines have run.</h2>
     </div>
     <div class="timeline">
-      <div class="timeline-item">
+      <div class="timeline-item is-open">
         <div class="timeline-marker"></div>
         <div class="timeline-content">
-          <p class="timeline-date">Nov 2024 — Present</p>
-          <h3>Senior Data Engineer, Nationwide</h3>
-          <p class="timeline-loc">The Colony, TX</p>
-          <p>
-            Own month-end AUM and NNC reporting pipelines built on Azure Data Factory and
-            Airflow. Led the migration to Databricks and Spark, cutting AUM processing time by
-            40%. Designed a bronze/silver/gold medallion architecture on ADLS Gen2 with Great
-            Expectations quality gates, and shipped a real-time fraud detection pipeline on
-            Event Hub and Kafka. Automated NAIC compliance reporting, replacing error-prone
-            Excel workflows and accelerating financial close by two days per cycle.
-          </p>
+          <button class="timeline-header" aria-expanded="true">
+            <span class="timeline-header-text">
+              <span class="timeline-date">Nov 2024 — Present</span>
+              <h3>Senior Data Engineer, Nationwide</h3>
+              <span class="timeline-loc">The Colony, TX</span>
+            </span>
+            <span class="timeline-chevron" aria-hidden="true"></span>
+          </button>
+          <div class="timeline-body">
+            <ul>
+              <li>Own month-end AUM and NNC reporting pipelines built on Azure Data Factory and Airflow.</li>
+              <li>Led the migration to Databricks and Spark, cutting AUM processing time by 40%.</li>
+              <li>Designed a bronze/silver/gold medallion architecture on ADLS Gen2 with Great Expectations quality gates.</li>
+              <li>Shipped a real-time fraud detection pipeline on Event Hub and Kafka.</li>
+              <li>Automated NAIC compliance reporting, replacing error-prone Excel workflows and accelerating financial close by two days per cycle.</li>
+            </ul>
+          </div>
         </div>
       </div>
       <div class="timeline-item">
         <div class="timeline-marker"></div>
         <div class="timeline-content">
-          <p class="timeline-date">Jul 2023 — Nov 2024</p>
-          <h3>Data Engineer, Comcast</h3>
-          <p class="timeline-loc">Dayton, OH</p>
-          <p>
-            Designed high-throughput Kafka pipelines ingesting subscriber activity and
-            viewership telemetry across millions of endpoints. Built a lakehouse on AWS S3 with
-            Delta Lake and Spark, and led the migration of analytical workloads to Snowflake
-            with role-based access and PII masking. Reduced EMR/Glue processing costs by 30%
-            through job tuning and partition pruning, and cut downstream incident escalations by
-            40% with automated data quality checks.
-          </p>
+          <button class="timeline-header" aria-expanded="false">
+            <span class="timeline-header-text">
+              <span class="timeline-date">Jul 2023 — Nov 2024</span>
+              <h3>Data Engineer, Comcast</h3>
+              <span class="timeline-loc">Dayton, OH</span>
+            </span>
+            <span class="timeline-chevron" aria-hidden="true"></span>
+          </button>
+          <div class="timeline-body">
+            <ul>
+              <li>Designed high-throughput Kafka pipelines ingesting subscriber activity and viewership telemetry across millions of endpoints.</li>
+              <li>Built a lakehouse on AWS S3 with Delta Lake and Spark, structuring bronze/silver/gold layers.</li>
+              <li>Led the migration of analytical workloads to Snowflake with role-based access and PII masking.</li>
+              <li>Reduced EMR/Glue processing costs by 30% through job tuning and partition pruning.</li>
+              <li>Cut downstream incident escalations by 40% with automated data quality checks.</li>
+            </ul>
+          </div>
         </div>
       </div>
       <div class="timeline-item">
         <div class="timeline-marker"></div>
         <div class="timeline-content">
-          <p class="timeline-date">Jul 2020 — Jul 2021</p>
-          <h3>Data Engineer, Experian</h3>
-          <p class="timeline-loc">Hyderabad, India</p>
-          <p>
-            Built end-to-end credit analytics pipelines on AWS (S3, Glue, EMR, Redshift) for
-            credit scoring and risk analytics. Orchestrated daily underwriting pipelines with
-            Airflow and Step Functions, and maintained PCI-DSS/FCRA compliance across
-            non-production environments through dynamic data masking. Built real-time fraud and
-            credit monitoring pipelines on Kafka and Kinesis, cutting event latency by 50%.
-          </p>
+          <button class="timeline-header" aria-expanded="false">
+            <span class="timeline-header-text">
+              <span class="timeline-date">Jul 2020 — Jul 2021</span>
+              <h3>Data Engineer, Experian</h3>
+              <span class="timeline-loc">Hyderabad, India</span>
+            </span>
+            <span class="timeline-chevron" aria-hidden="true"></span>
+          </button>
+          <div class="timeline-body">
+            <ul>
+              <li>Built end-to-end credit analytics pipelines on AWS (S3, Glue, EMR, Redshift) for credit scoring and risk analytics.</li>
+              <li>Orchestrated daily underwriting pipelines with Airflow and Step Functions.</li>
+              <li>Maintained PCI-DSS/FCRA compliance across non-production environments through dynamic data masking.</li>
+              <li>Built real-time fraud and credit monitoring pipelines on Kafka and Kinesis, cutting event latency by 50%.</li>
+            </ul>
+          </div>
         </div>
       </div>
       <div class="timeline-item">
         <div class="timeline-marker"></div>
         <div class="timeline-content">
-          <p class="timeline-date">Jan 2019 — Jul 2020</p>
-          <h3>Data Engineer, Novartis</h3>
-          <p class="timeline-loc">Hyderabad, India</p>
-          <p>
-            Built clinical trial and lab data ingestion pipelines on AWS, validating datasets
-            for CDISC/SDTM compliance to support regulatory submissions. Monitored
-            pharmacovigilance and adverse-event data flows via Kafka streaming, and orchestrated
-            GxP-validated pipelines with SAS and Airflow. Automated CRO reconciliation with
-            Python and SAS, cutting cycle time by 60%.
-          </p>
+          <button class="timeline-header" aria-expanded="false">
+            <span class="timeline-header-text">
+              <span class="timeline-date">Jan 2019 — Jul 2020</span>
+              <h3>Data Engineer, Novartis</h3>
+              <span class="timeline-loc">Hyderabad, India</span>
+            </span>
+            <span class="timeline-chevron" aria-hidden="true"></span>
+          </button>
+          <div class="timeline-body">
+            <ul>
+              <li>Built clinical trial and lab data ingestion pipelines on AWS, validating datasets for CDISC/SDTM compliance.</li>
+              <li>Monitored pharmacovigilance and adverse-event data flows via Kafka streaming.</li>
+              <li>Orchestrated GxP-validated pipelines with SAS and Airflow, managing scheduling and audit logging.</li>
+              <li>Automated CRO reconciliation with Python and SAS, cutting cycle time by 60%.</li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
@@ -482,6 +522,6 @@
   <p>Built &amp; deployed on GitHub Pages · © <span id="year"></span> Nithin Bobbiligama</p>
 </footer>
 
-<script src="script.js?v=5"></script>
+<script src="script.js?v=7"></script>
 </body>
 </html>
