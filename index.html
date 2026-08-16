@@ -22,11 +22,16 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=7">
+<link rel="stylesheet" href="styles.css?v=8">
 </head>
 <body>
 
-<div class="ambient" aria-hidden="true"></div>
+<div class="ambient" aria-hidden="true">
+  <span class="aurora aurora-cyan"></span>
+  <span class="aurora aurora-violet"></span>
+  <span class="aurora aurora-coral"></span>
+  <span class="aurora aurora-cyan-2"></span>
+</div>
 <div class="dot-grid" aria-hidden="true"></div>
 <div class="grain" aria-hidden="true"></div>
 
@@ -53,8 +58,23 @@
 </div>
 
 <nav class="topnav">
-  <a href="#top" class="brand">NB<span class="brand-dot">.</span></a>
-  <div class="nav-links">
+  <div class="nav-inner">
+    <a href="#top" class="brand">NB<span class="brand-dot">.</span></a>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
+      <a href="#certifications">Certifications</a>
+      <a href="#projects">Projects</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a href="assets/Nithin_Resume.pdf" class="nav-resume" target="_blank" rel="noopener">Resume</a>
+    <button class="nav-toggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-nav-panel" id="mobile-nav-panel">
     <a href="#about">About</a>
     <a href="#skills">Skills</a>
     <a href="#experience">Experience</a>
@@ -63,10 +83,6 @@
     <a href="#education">Education</a>
     <a href="#contact">Contact</a>
   </div>
-  <a href="assets/Nithin_Resume.pdf" class="nav-resume" target="_blank" rel="noopener">Resume</a>
-  <button class="nav-toggle" aria-label="Toggle menu">
-    <span></span><span></span><span></span>
-  </button>
 </nav>
 
 <main id="top">
@@ -217,7 +233,7 @@
           <span class="tag">SAS</span><span class="tag">Bash / SSH</span>
         </div>
       </div>
-      <div class="skill-card">
+      <div class="skill-card span-2">
         <h3>Cloud Platforms</h3>
         <div class="tag-row">
           <span class="tag">Azure Data Factory</span><span class="tag">Databricks</span><span class="tag">Synapse</span>
@@ -243,7 +259,7 @@
           <span class="tag">DynamoDB</span><span class="tag">Cosmos DB</span><span class="tag">Teradata</span>
         </div>
       </div>
-      <div class="skill-card">
+      <div class="skill-card span-2">
         <h3>Data Governance &amp; Quality</h3>
         <div class="tag-row">
           <span class="tag">Great Expectations</span><span class="tag">Schema Validation</span>
@@ -522,6 +538,6 @@
   <p>Built &amp; deployed on GitHub Pages · © <span id="year"></span> Nithin Bobbiligama</p>
 </footer>
 
-<script src="script.js?v=7"></script>
+<script src="script.js?v=8"></script>
 </body>
 </html>

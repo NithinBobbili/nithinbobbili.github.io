@@ -2,15 +2,15 @@ document.getElementById('year').textContent = new Date().getFullYear();
 
 // Mobile nav toggle
 const navToggle = document.querySelector('.nav-toggle');
-const navLinksWrap = document.querySelector('.nav-links');
+const mobileNavPanel = document.querySelector('.mobile-nav-panel');
 navToggle.addEventListener('click', () => {
-  const isOpen = navLinksWrap.classList.toggle('open');
+  const isOpen = mobileNavPanel.classList.toggle('open');
   navToggle.classList.toggle('open', isOpen);
   navToggle.setAttribute('aria-expanded', String(isOpen));
 });
-navLinksWrap.querySelectorAll('a').forEach((link) => {
+mobileNavPanel.querySelectorAll('a').forEach((link) => {
   link.addEventListener('click', () => {
-    navLinksWrap.classList.remove('open');
+    mobileNavPanel.classList.remove('open');
     navToggle.classList.remove('open');
   });
 });
