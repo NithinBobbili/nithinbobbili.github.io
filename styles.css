@@ -268,7 +268,11 @@ main, .topnav, .footer, .pipeline-rail { position: relative; z-index: 1; }
   color: var(--accent);
   display: block;
   margin-bottom: 14px;
+  letter-spacing: 0.04em;
 }
+.eyebrow-violet { color: var(--violet); }
+.eyebrow-amber { color: var(--amber); }
+.eyebrow-coral { color: var(--coral); }
 .section-head h2 {
   font-family: var(--font-display);
   font-size: clamp(32px, 4.6vw, 46px);
@@ -788,9 +792,16 @@ main, .topnav, .footer, .pipeline-rail { position: relative; z-index: 1; }
   font-family: var(--font-mono);
   font-size: 13px;
 }
-.social-row a { color: var(--text-dim); transition: color 0.2s; display: inline-flex; align-items: center; gap: 7px; }
-.social-row a:hover { color: var(--accent); }
+.social-row a { color: var(--text-dim); transition: color 0.2s, transform 0.2s; display: inline-flex; align-items: center; gap: 7px; }
+.social-row a:hover { color: var(--accent); transform: translateY(-1px); }
 .social-icon { width: 15px; height: 15px; flex-shrink: 0; }
+
+/* Authentic brand colors for recognizable platform icons */
+.social-github .social-icon { color: #F0F3F9; }
+.social-github:hover .social-icon { color: #FFFFFF; }
+.social-linkedin .social-icon { color: #0A66C2; }
+.social-linkedin:hover .social-icon { color: #2585E5; }
+.social-github:hover, .social-linkedin:hover { color: var(--text); }
 
 /* ===== Footer ===== */
 .footer {
@@ -988,4 +999,99 @@ a:focus-visible, .btn:focus-visible {
 }
 @media (prefers-reduced-motion: reduce) {
   .skill-card, .project-card, .cert-card { transform: none !important; }
+}
+
+/* ===== Staggered card reveal within sections ===== */
+.skills-grid .skill-card,
+.cert-grid .cert-card,
+.projects-grid .project-card,
+.timeline .timeline-item {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.55s ease, transform 0.55s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.section.in-view .skills-grid .skill-card,
+.section.in-view .cert-grid .cert-card,
+.section.in-view .projects-grid .project-card,
+.section.in-view .timeline .timeline-item {
+  opacity: 1;
+  transform: translateY(0);
+}
+.section.in-view .skills-grid .skill-card:hover,
+.section.in-view .cert-grid .cert-card:hover,
+.section.in-view .projects-grid .project-card:hover {
+  transform: translateY(-3px);
+}
+
+.skills-grid .skill-card:nth-child(1) { transition-delay: 0.02s; }
+.skills-grid .skill-card:nth-child(2) { transition-delay: 0.08s; }
+.skills-grid .skill-card:nth-child(3) { transition-delay: 0.14s; }
+.skills-grid .skill-card:nth-child(4) { transition-delay: 0.20s; }
+.skills-grid .skill-card:nth-child(5) { transition-delay: 0.26s; }
+.skills-grid .skill-card:nth-child(6) { transition-delay: 0.32s; }
+.skills-grid .skill-card:nth-child(7) { transition-delay: 0.38s; }
+.skills-grid .skill-card:nth-child(8) { transition-delay: 0.44s; }
+
+.cert-grid .cert-card:nth-child(1) { transition-delay: 0.02s; }
+.cert-grid .cert-card:nth-child(2) { transition-delay: 0.08s; }
+.cert-grid .cert-card:nth-child(3) { transition-delay: 0.14s; }
+.cert-grid .cert-card:nth-child(4) { transition-delay: 0.20s; }
+.cert-grid .cert-card:nth-child(5) { transition-delay: 0.26s; }
+.cert-grid .cert-card:nth-child(6) { transition-delay: 0.32s; }
+
+.projects-grid .project-card:nth-child(1) { transition-delay: 0.02s; }
+.projects-grid .project-card:nth-child(2) { transition-delay: 0.10s; }
+.projects-grid .project-card:nth-child(3) { transition-delay: 0.18s; }
+.projects-grid .project-card:nth-child(4) { transition-delay: 0.26s; }
+
+.timeline .timeline-item:nth-child(1) { transition-delay: 0.02s; }
+.timeline .timeline-item:nth-child(2) { transition-delay: 0.10s; }
+.timeline .timeline-item:nth-child(3) { transition-delay: 0.18s; }
+.timeline .timeline-item:nth-child(4) { transition-delay: 0.26s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .skills-grid .skill-card,
+  .cert-grid .cert-card,
+  .projects-grid .project-card,
+  .timeline .timeline-item {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ===== Refined spacing rhythm ===== */
+.section-head { margin-bottom: 44px; }
+.skills-grid { gap: 18px; }
+.cert-grid { gap: 18px; }
+.projects-grid { gap: 18px; }
+.badge-row { gap: 10px; }
+
+/* ===== Button polish ===== */
+.btn-primary {
+  position: relative;
+  overflow: hidden;
+}
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -60%;
+  width: 40%; height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.35), transparent);
+  transform: skewX(-20deg);
+  transition: left 0.5s ease;
+}
+.btn-primary:hover::after { left: 130%; }
+
+/* ===== Nav entrance ===== */
+.topnav {
+  animation: navIn 0.6s ease both;
+}
+@keyframes navIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .topnav { animation: none; }
+  .btn-primary::after { display: none; }
 }
