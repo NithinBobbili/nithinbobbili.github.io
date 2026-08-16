@@ -27,10 +27,9 @@ const revealObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.15 });
 sections.forEach((s) => revealObserver.observe(s));
 
-// Active nav tab highlighting + status bar section indicator
-const navLinks = document.querySelectorAll('.tab-bar .tab');
+// Active nav link highlighting
+const navLinks = document.querySelectorAll('.nav-links a');
 const navMap = new Map();
-const statusbarSection = document.getElementById('statusbar-section');
 navLinks.forEach((link) => {
   const id = link.getAttribute('href').replace('#', '');
   navMap.set(id, link);
@@ -39,18 +38,15 @@ navLinks.forEach((link) => {
 const navObserver = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
     const link = navMap.get(entry.target.id);
+    if (!link) return;
     if (entry.isIntersecting) {
-      if (link) {
-        navLinks.forEach((l) => l.classList.remove('active'));
-        link.classList.add('active');
-      }
-      if (statusbarSection) statusbarSection.textContent = '§ ' + entry.target.id;
+      navLinks.forEach((l) => l.classList.remove('active'));
+      link.classList.add('active');
     }
   });
 }, { rootMargin: '-40% 0px -50% 0px' });
 
 document.querySelectorAll('main .section').forEach((s) => navObserver.observe(s));
-document.querySelector('.hero') && navObserver.observe(document.querySelector('.hero'));
 
 // Experience accordion
 document.querySelectorAll('.timeline-header').forEach((header) => {
@@ -60,6 +56,18 @@ document.querySelectorAll('.timeline-header').forEach((header) => {
     header.setAttribute('aria-expanded', String(isOpen));
   });
 });
+
+// Subtle cursor-reactive glow in hero
+const hero = document.querySelector('.hero');
+if (hero && window.matchMedia('(pointer: fine)').matches) {
+  hero.addEventListener('mousemove', (e) => {
+    const rect = hero.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+    hero.style.setProperty('--mx', x + '%');
+    hero.style.setProperty('--my', y + '%');
+  });
+}
 
 // Animated stat counters
 const counters = document.querySelectorAll('.hero-stat-num[data-count]');
@@ -82,6 +90,21 @@ const countObserver = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.6 });
 counters.forEach((c) => countObserver.observe(c));
+
+// Tilt hover on cards
+if (window.matchMedia('(pointer: fine)').matches) {
+  document.querySelectorAll('.skill-card, .project-card, .cert-card').forEach((card) => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width - 0.5;
+      const y = (e.clientY - rect.top) / rect.height - 0.5;
+      card.style.transform = `perspective(600px) rotateX(${(-y * 6).toFixed(2)}deg) rotateY(${(x * 6).toFixed(2)}deg) translateY(-2px)`;
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+    });
+  });
+}
 
 // Command palette
 (function () {
@@ -181,4 +204,80 @@ counters.forEach((c) => countObserver.observe(c));
     }
     if (e.key === 'Escape' && overlay.classList.contains('open')) close();
   });
+})();
+
+// Data-network canvas background (signature technical flourish)
+(function () {
+  const canvas = document.getElementById('network-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  let width, height, dpr;
+  let nodes = [];
+  const colors = ['#4FD1C5', '#8B7CF6', '#FF8B6B'];
+  const LINK_DIST = 150;
+
+  function resize() {
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    width = window.innerWidth;
+    height = window.innerHeight;
+    canvas.width = width * dpr;
+    canvas.height = height * dpr;
+    canvas.style.width = width + 'px';
+    canvas.style.height = height + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    const count = Math.min(70, Math.round((width * height) / 18000));
+    nodes = Array.from({ length: count }, () => ({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      vx: (Math.random() - 0.5) * 0.25,
+      vy: (Math.random() - 0.5) * 0.25,
+      r: Math.random() * 1.6 + 0.6,
+      color: colors[Math.floor(Math.random() * colors.length)],
+    }));
+  }
+
+  function step() {
+    ctx.clearRect(0, 0, width, height);
+
+    for (const n of nodes) {
+      n.x += n.vx;
+      n.y += n.vy;
+      if (n.x < 0 || n.x > width) n.vx *= -1;
+      if (n.y < 0 || n.y > height) n.vy *= -1;
+    }
+
+    for (let i = 0; i < nodes.length; i++) {
+      for (let j = i + 1; j < nodes.length; j++) {
+        const a = nodes[i], b = nodes[j];
+        const dx = a.x - b.x, dy = a.y - b.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < LINK_DIST) {
+          ctx.strokeStyle = `rgba(154, 163, 196, ${0.14 * (1 - dist / LINK_DIST)})`;
+          ctx.lineWidth = 1;
+          ctx.beginPath();
+          ctx.moveTo(a.x, a.y);
+          ctx.lineTo(b.x, b.y);
+          ctx.stroke();
+        }
+      }
+    }
+
+    for (const n of nodes) {
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+      ctx.fillStyle = n.color;
+      ctx.globalAlpha = 0.55;
+      ctx.fill();
+      ctx.globalAlpha = 1;
+    }
+
+    if (!reduceMotion) requestAnimationFrame(step);
+  }
+
+  resize();
+  window.addEventListener('resize', resize);
+  step();
 })();

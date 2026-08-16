@@ -21,12 +21,20 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=9">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=10">
 </head>
 <body>
 
-<div class="paper-grid" aria-hidden="true"></div>
+<div class="ambient" aria-hidden="true">
+  <span class="aurora aurora-cyan"></span>
+  <span class="aurora aurora-violet"></span>
+  <span class="aurora aurora-coral"></span>
+  <span class="aurora aurora-cyan-2"></span>
+</div>
+<canvas id="network-canvas" class="network-canvas" aria-hidden="true"></canvas>
+<div class="dot-grid" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
 
 <button class="cmdk-hint" id="cmdk-hint" type="button" aria-label="Open quick navigation">
   <kbd>⌘</kbd><kbd>K</kbd> <span>to navigate</span>
@@ -43,147 +51,191 @@
   </div>
 </div>
 
-<!-- TAB BAR NAV -->
+<div class="pipeline-rail" aria-hidden="true">
+  <svg class="pipeline-svg" viewBox="0 0 2 1000" preserveAspectRatio="none">
+    <line x1="1" y1="0" x2="1" y2="1000" class="pipeline-track"/>
+    <line x1="1" y1="0" x2="1" y2="1000" class="pipeline-flow"/>
+  </svg>
+</div>
+
 <nav class="topnav">
   <div class="nav-inner">
-    <a href="#top" class="brand"><span class="brand-bracket">&lt;</span>NB<span class="brand-bracket">/&gt;</span></a>
-    <div class="tab-bar">
-      <a href="#about" class="tab" data-lang="md"><span class="tab-dot dot-md"></span>about.md</a>
-      <a href="#skills" class="tab" data-lang="json"><span class="tab-dot dot-json"></span>skills.json</a>
-      <a href="#experience" class="tab" data-lang="log"><span class="tab-dot dot-log"></span>experience.log</a>
-      <a href="#certifications" class="tab" data-lang="yml"><span class="tab-dot dot-yml"></span>certs.yml</a>
-      <a href="#projects" class="tab" data-lang="dir"><span class="tab-dot dot-dir"></span>projects/</a>
-      <a href="#education" class="tab" data-lang="md"><span class="tab-dot dot-md"></span>education.md</a>
-      <a href="#contact" class="tab" data-lang="sh"><span class="tab-dot dot-sh"></span>contact.sh</a>
+    <a href="#top" class="brand">NB<span class="brand-dot">.</span></a>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
+      <a href="#certifications">Certifications</a>
+      <a href="#projects">Projects</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
     </div>
-    <a href="assets/Nithin_Resume.pdf" class="nav-resume" target="_blank" rel="noopener">↓ resume.pdf</a>
+    <a href="assets/Nithin_Resume.pdf" class="nav-resume" target="_blank" rel="noopener">Resume</a>
     <button class="nav-toggle" aria-label="Toggle menu">
       <span></span><span></span><span></span>
     </button>
   </div>
   <div class="mobile-nav-panel" id="mobile-nav-panel">
-    <a href="#about">about.md</a>
-    <a href="#skills">skills.json</a>
-    <a href="#experience">experience.log</a>
-    <a href="#certifications">certs.yml</a>
-    <a href="#projects">projects/</a>
-    <a href="#education">education.md</a>
-    <a href="#contact">contact.sh</a>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#experience">Experience</a>
+    <a href="#certifications">Certifications</a>
+    <a href="#projects">Projects</a>
+    <a href="#education">Education</a>
+    <a href="#contact">Contact</a>
   </div>
 </nav>
 
 <main id="top">
 
-  <!-- HERO — rendered as an open code file -->
+  <!-- HERO -->
   <section class="hero" data-node="source">
-    <div class="editor-pane hero-editor">
-      <div class="editor-titlebar">
-        <span class="editor-dots"><i></i><i></i><i></i></span>
-        <span class="editor-filename">nithin.ts</span>
-        <span class="editor-status"><span class="dot dot-live"></span>available</span>
+    <div class="hero-inner">
+      <p class="eyebrow"><span class="dot dot-live"></span>Available for full-time roles · The Colony, TX</p>
+      <h1 class="hero-title" id="hero-title">
+        <span class="reveal-word">I</span> <span class="reveal-word">move</span> <span class="reveal-word">data</span><br>
+        <span class="reveal-word">that</span> <span class="reveal-word accent">moves</span> <span class="reveal-word accent">decisions.</span>
+      </h1>
+      <p class="hero-sub">
+        Nithin Bobbiligama — Senior Data Engineer architecting cloud-native lakehouse
+        platforms, real-time streaming pipelines, and medallion ETL/ELT across banking,
+        insurance, and pharma.
+      </p>
+      <div class="hero-actions">
+        <a href="#projects" class="btn btn-primary">See the work</a>
+        <a href="#contact" class="btn btn-ghost">Get in touch</a>
       </div>
-      <div class="editor-body">
-        <pre class="code-block"><code><span class="ln">1</span><span class="tok-comment">// Senior Data Engineer · The Colony, TX</span>
-<span class="ln">2</span><span class="tok-kw">const</span> <span class="tok-var">engineer</span> <span class="tok-op">=</span> <span class="tok-punct">{</span>
-<span class="ln">3</span>  <span class="tok-key">name</span><span class="tok-punct">:</span> <span class="tok-str">"Nithin Bobbiligama"</span><span class="tok-punct">,</span>
-<span class="ln">4</span>  <span class="tok-key">role</span><span class="tok-punct">:</span> <span class="tok-str">"Senior Data Engineer"</span><span class="tok-punct">,</span>
-<span class="ln">5</span>  <span class="tok-key">focus</span><span class="tok-punct">:</span> <span class="tok-punct">[</span><span class="tok-str">"lakehouse"</span><span class="tok-punct">,</span> <span class="tok-str">"streaming"</span><span class="tok-punct">,</span> <span class="tok-str">"compliance"</span><span class="tok-punct">]</span><span class="tok-punct">,</span>
-<span class="ln">6</span>  <span class="tok-key">clouds</span><span class="tok-punct">:</span> <span class="tok-punct">[</span><span class="tok-str">"Azure"</span><span class="tok-punct">,</span> <span class="tok-str">"AWS"</span><span class="tok-punct">]</span><span class="tok-punct">,</span>
-<span class="ln">7</span>  <span class="tok-key">yearsExperience</span><span class="tok-punct">:</span> <span class="tok-num">6</span><span class="tok-punct">,</span>
-<span class="ln">8</span>  <span class="tok-key">available</span><span class="tok-punct">:</span> <span class="tok-kw2">true</span><span class="tok-punct">,</span>
-<span class="ln">9</span><span class="tok-punct">}</span><span class="tok-punct">;</span>
-<span class="ln">10</span></code></pre>
-        <p class="hero-sub">
-          I move data that <span class="hl">moves decisions</span> — architecting cloud-native
-          lakehouse platforms, real-time streaming pipelines, and medallion ETL/ELT across
-          banking, insurance, and pharma.
-        </p>
-        <div class="hero-actions">
-          <a href="#projects" class="btn btn-primary">$ see --projects</a>
-          <a href="#contact" class="btn btn-ghost">$ get --in-touch</a>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <span class="hero-stat-num" data-count="6" data-suffix="+">0</span>
+          <span class="hero-stat-label">Years in data engineering</span>
         </div>
-        <div class="hero-stats">
-          <div class="hero-stat">
-            <span class="hero-stat-num" data-count="6" data-suffix="+">0</span>
-            <span class="hero-stat-label">Years in data engineering</span>
-          </div>
-          <div class="hero-stat">
-            <span class="hero-stat-num" data-count="6">0</span>
-            <span class="hero-stat-label">Cloud &amp; data certifications</span>
-          </div>
-          <div class="hero-stat">
-            <span class="hero-stat-num">M.S.</span>
-            <span class="hero-stat-label">Computer Science, Dayton</span>
-          </div>
+        <div class="hero-stat">
+          <span class="hero-stat-num" data-count="6">0</span>
+          <span class="hero-stat-label">Cloud &amp; data certifications</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-num">M.S.</span>
+          <span class="hero-stat-label">Computer Science, Dayton</span>
         </div>
       </div>
     </div>
 
-    <div class="hero-photo-panel">
-      <div class="editor-titlebar editor-titlebar-sm">
-        <span class="editor-filename">preview.png</span>
-      </div>
-      <div class="hero-photo-frame">
+    <div class="hero-right">
+      <div class="hero-photo-card">
         <img src="assets/images/nb.jpg" alt="Portrait of Nithin Bobbiligama">
       </div>
-      <div class="hero-photo-caption">Senior Data Engineer @ Nationwide</div>
+      <div class="hero-photo-badge">
+        <span class="dot dot-live"></span>
+        Senior Data Engineer at Nationwide
+      </div>
+
+      <div class="hero-diagram" aria-hidden="true">
+      <svg viewBox="0 0 460 220" class="flow-svg">
+        <defs>
+          <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="var(--accent)"></path>
+          </marker>
+          <radialGradient id="packetGlow">
+            <stop offset="0%" stop-color="var(--accent)" stop-opacity="1"/>
+            <stop offset="100%" stop-color="var(--accent)" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+
+        <path id="p1" d="M70,40 L215,40" class="flow-line" marker-end="url(#arrow)"/>
+        <path id="p2" d="M70,110 L215,110" class="flow-line" marker-end="url(#arrow)"/>
+        <path id="p3" d="M70,180 L215,180" class="flow-line" marker-end="url(#arrow)"/>
+        <path id="p4" d="M285,40 L390,105" class="flow-line" marker-end="url(#arrow)"/>
+        <path id="p5" d="M285,110 L390,110" class="flow-line" marker-end="url(#arrow)"/>
+        <path id="p6" d="M285,180 L390,115" class="flow-line" marker-end="url(#arrow)"/>
+
+        <g class="flow-node">
+          <rect x="10" y="24" width="60" height="32" rx="6"></rect>
+          <text x="40" y="44">Kafka</text>
+        </g>
+        <g class="flow-node">
+          <rect x="10" y="94" width="60" height="32" rx="6"></rect>
+          <text x="40" y="114">ADF</text>
+        </g>
+        <g class="flow-node">
+          <rect x="10" y="164" width="60" height="32" rx="6"></rect>
+          <text x="40" y="184">APIs</text>
+        </g>
+
+        <g class="flow-node flow-node-main">
+          <rect x="215" y="90" width="70" height="40" rx="6"></rect>
+          <text x="250" y="114">Databricks</text>
+        </g>
+
+        <g class="flow-node flow-node-out">
+          <rect x="390" y="88" width="60" height="32" rx="6"></rect>
+          <text x="420" y="108">Power BI</text>
+        </g>
+
+        <circle r="4" fill="url(#packetGlow)"><animateMotion dur="2.4s" begin="0s" repeatCount="indefinite"><mpath href="#p1"/></animateMotion></circle>
+        <circle r="4" fill="url(#packetGlow)"><animateMotion dur="2.4s" begin="0.5s" repeatCount="indefinite"><mpath href="#p2"/></animateMotion></circle>
+        <circle r="4" fill="url(#packetGlow)"><animateMotion dur="2.4s" begin="1s" repeatCount="indefinite"><mpath href="#p3"/></animateMotion></circle>
+        <circle r="3.5" fill="url(#packetGlow)"><animateMotion dur="1.6s" begin="2.4s" repeatCount="indefinite"><mpath href="#p4"/></animateMotion></circle>
+        <circle r="3.5" fill="url(#packetGlow)"><animateMotion dur="1.6s" begin="2.9s" repeatCount="indefinite"><mpath href="#p5"/></animateMotion></circle>
+        <circle r="3.5" fill="url(#packetGlow)"><animateMotion dur="1.6s" begin="3.4s" repeatCount="indefinite"><mpath href="#p6"/></animateMotion></circle>
+      </svg>
+      </div>
     </div>
   </section>
 
   <!-- ABOUT -->
   <section class="section" id="about" data-node="about">
-    <div class="file-header">
-      <span class="file-path">~/about<span class="file-ext">.md</span></span>
+    <div class="section-head">
+      <span class="section-eyebrow">About</span>
+      <h2>Six years of turning raw feeds into decisions people trust.</h2>
     </div>
-    <div class="editor-pane">
-      <div class="code-line"><span class="gutter">1</span><span class="content"><span class="tok-comment"># About</span></span></div>
-      <div class="code-line"><span class="gutter">2</span><span class="content"></span></div>
-      <div class="code-line prose-line"><span class="gutter">3</span><span class="content">
-        I'm a Senior Data Engineer with 6+ years architecting and delivering large-scale data
-        platforms across banking, insurance, pharmaceutical, and fintech domains — industries
-        where a broken pipeline isn't just annoying, it's a compliance problem. I hold a
-        Master's in Computer Science from the University of Dayton (2023).
-      </span></div>
-      <div class="code-line"><span class="gutter">4</span><span class="content"></span></div>
-      <div class="code-line prose-line"><span class="gutter">5</span><span class="content">
-        My focus is cloud-native lakehouse design, real-time streaming, and medallion-based
-        ETL/ELT on AWS and Azure — with Python, Spark, Kafka, Snowflake, Delta Lake, and
-        Terraform as the daily toolkit. I've led mission-critical pipelines for AUM reporting,
-        credit risk analytics, fraud detection, and clinical data governance, working within
-        PCI-DSS, GDPR, FCRA, HIPAA, and GxP compliance frameworks.
-      </span></div>
-      <div class="code-line"><span class="gutter">6</span><span class="content"></span></div>
-      <div class="code-line prose-line"><span class="gutter">7</span><span class="content">
-        Right now I'm a Senior Data Engineer at Nationwide, where I own month-end financial
-        reporting pipelines, led a lakehouse migration to Databricks that cut processing time
-        by 40%, and built a real-time fraud detection pipeline on Event Hub and Kafka. Before
-        that: Comcast (streaming platforms at telecom scale), Experian (credit risk analytics),
-        and Novartis (clinical data pipelines).
-      </span></div>
-      <div class="code-line"><span class="gutter">8</span><span class="content"></span></div>
-      <div class="code-line prose-line"><span class="gutter">9</span><span class="content">
-        I'm looking for full-time work where I can keep doing exactly this: solving the
-        unglamorous, high-stakes problem of getting the right data to the right place, fast,
-        correctly, and compliantly.
-      </span></div>
+    <div class="about-grid">
+      <div class="about-copy about-copy-full">
+        <p>
+          I'm a Senior Data Engineer with 6+ years architecting and delivering large-scale data
+          platforms across banking, insurance, pharmaceutical, and fintech domains — industries
+          where a broken pipeline isn't just annoying, it's a compliance problem. I hold a
+          Master's in Computer Science from the University of Dayton (2023).
+        </p>
+        <p>
+          My focus is cloud-native lakehouse design, real-time streaming, and medallion-based
+          ETL/ELT on AWS and Azure — with Python, Spark, Kafka, Snowflake, Delta Lake, and
+          Terraform as the daily toolkit. I've led mission-critical pipelines for AUM reporting,
+          credit risk analytics, fraud detection, and clinical data governance, working within
+          PCI-DSS, GDPR, FCRA, HIPAA, and GxP compliance frameworks.
+        </p>
+        <p>
+          Right now I'm a Senior Data Engineer at Nationwide, where I own month-end financial
+          reporting pipelines, led a lakehouse migration to Databricks that cut processing time
+          by 40%, and built a real-time fraud detection pipeline on Event Hub and Kafka. Before
+          that: Comcast (streaming platforms at telecom scale), Experian (credit risk analytics),
+          and Novartis (clinical data pipelines).
+        </p>
+        <p>
+          I'm looking for full-time work where I can keep doing exactly this: solving the
+          unglamorous, high-stakes problem of getting the right data to the right place, fast,
+          correctly, and compliantly.
+        </p>
+      </div>
     </div>
   </section>
 
   <!-- SKILLS -->
   <section class="section" id="skills" data-node="skills">
-    <div class="file-header">
-      <span class="file-path">~/skills<span class="file-ext">.json</span></span>
+    <div class="section-head">
+      <span class="section-eyebrow">Skills</span>
+      <h2>The stack, end to end.</h2>
     </div>
     <div class="skills-grid">
-      <div class="skill-card" data-lang="languages">
-        <h3><span class="skill-key">"languages_and_processing"</span></h3>
+      <div class="skill-card">
+        <h3><svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l-6-6 6-6M15 6l6 6-6 6"/></svg>Languages &amp; Processing</h3>
         <div class="tag-row">
           <span class="tag">Python</span><span class="tag">SQL</span><span class="tag">PySpark</span>
           <span class="tag">SAS</span><span class="tag">Bash / SSH</span>
         </div>
       </div>
-      <div class="skill-card span-2" data-lang="cloud">
-        <h3><span class="skill-key">"cloud_platforms"</span></h3>
+      <div class="skill-card span-2">
+        <h3><svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>Cloud Platforms</h3>
         <div class="tag-row">
           <span class="tag">Azure Data Factory</span><span class="tag">Databricks</span><span class="tag">Synapse</span>
           <span class="tag">ADLS Gen2</span><span class="tag">Event Hub</span><span class="tag">Azure Functions</span>
@@ -192,24 +244,24 @@
           <span class="tag">Step Functions</span><span class="tag">DMS</span>
         </div>
       </div>
-      <div class="skill-card" data-lang="streaming">
-        <h3><span class="skill-key">"big_data_and_streaming"</span></h3>
+      <div class="skill-card">
+        <h3><svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h4l2-7 4 14 2-7h6"/></svg>Big Data &amp; Streaming</h3>
         <div class="tag-row">
           <span class="tag">Apache Spark</span><span class="tag">Kafka</span><span class="tag">Airflow</span>
           <span class="tag">Delta Lake</span><span class="tag">DBT</span><span class="tag">Apache Beam</span>
           <span class="tag">Flink</span><span class="tag">Hive</span><span class="tag">HBase</span>
         </div>
       </div>
-      <div class="skill-card" data-lang="db">
-        <h3><span class="skill-key">"databases_and_warehousing"</span></h3>
+      <div class="skill-card">
+        <h3><svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.66 3.58 3 8 3s8-1.34 8-3V5M4 12c0 1.66 3.58 3 8 3s8-1.34 8-3"/></svg>Databases &amp; Warehousing</h3>
         <div class="tag-row">
           <span class="tag">Snowflake</span><span class="tag">Azure Synapse</span><span class="tag">Redshift</span>
           <span class="tag">PostgreSQL</span><span class="tag">SQL Server</span><span class="tag">MongoDB</span>
           <span class="tag">DynamoDB</span><span class="tag">Cosmos DB</span><span class="tag">Teradata</span>
         </div>
       </div>
-      <div class="skill-card span-2" data-lang="governance">
-        <h3><span class="skill-key">"data_governance_and_quality"</span></h3>
+      <div class="skill-card span-2">
+        <h3><svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/><path d="M9 12l2 2 4-4"/></svg>Data Governance &amp; Quality</h3>
         <div class="tag-row">
           <span class="tag">Great Expectations</span><span class="tag">Schema Validation</span>
           <span class="tag">Data Lineage</span><span class="tag">CDISC / SDTM</span>
@@ -217,21 +269,21 @@
           <span class="tag">HIPAA</span><span class="tag">GxP</span>
         </div>
       </div>
-      <div class="skill-card" data-lang="devops">
-        <h3><span class="skill-key">"ci_cd_and_devops"</span></h3>
+      <div class="skill-card">
+        <h3><svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="6" r="2.5"/><circle cx="6" cy="18" r="2.5"/><circle cx="18" cy="12" r="2.5"/><path d="M6 8.5v7M8.2 16.8L15.8 13M8.2 7.2L15.8 11"/></svg>CI/CD &amp; DevOps</h3>
         <div class="tag-row">
           <span class="tag">Terraform</span><span class="tag">Docker</span><span class="tag">GitHub Actions</span>
           <span class="tag">Jenkins</span><span class="tag">Azure DevOps</span><span class="tag">Git</span>
         </div>
       </div>
-      <div class="skill-card" data-lang="viz">
-        <h3><span class="skill-key">"visualization"</span></h3>
+      <div class="skill-card">
+        <h3><svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20V10M12 20V4M20 20v-7"/></svg>Visualization</h3>
         <div class="tag-row">
           <span class="tag">Power BI</span><span class="tag">Tableau</span><span class="tag">Amazon QuickSight</span>
         </div>
       </div>
-      <div class="skill-card" data-lang="methods">
-        <h3><span class="skill-key">"methodologies"</span></h3>
+      <div class="skill-card">
+        <h3><svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l9 5-9 5-9-5 9-5z"/><path d="M3 12l9 5 9-5M3 17l9 5 9-5"/></svg>Methodologies</h3>
         <div class="tag-row">
           <span class="tag">Agile</span><span class="tag">Scrum</span><span class="tag">Kanban</span><span class="tag">SDLC</span>
         </div>
@@ -239,20 +291,21 @@
     </div>
   </section>
 
-  <!-- EXPERIENCE — styled as a git log -->
+  <!-- EXPERIENCE -->
   <section class="section" id="experience" data-node="experience">
-    <div class="file-header">
-      <span class="file-path">$ git log <span class="file-ext">--oneline --graph</span></span>
+    <div class="section-head">
+      <span class="section-eyebrow">Experience</span>
+      <h2>Where the pipelines have run.</h2>
     </div>
     <div class="timeline">
       <div class="timeline-item is-open">
         <div class="timeline-marker"></div>
         <div class="timeline-content">
           <button class="timeline-header" aria-expanded="true">
-            <span class="commit-hash">a3f9c2e</span>
             <span class="timeline-header-text">
-              <h3>Senior Data Engineer <span class="commit-at">@</span> Nationwide</h3>
-              <span class="timeline-loc"><span class="timeline-date">Nov 2024 — Present</span> · The Colony, TX</span>
+              <span class="timeline-date">Nov 2024 — Present</span>
+              <h3>Senior Data Engineer, Nationwide</h3>
+              <span class="timeline-loc">The Colony, TX</span>
             </span>
             <span class="timeline-chevron" aria-hidden="true"></span>
           </button>
@@ -271,10 +324,10 @@
         <div class="timeline-marker"></div>
         <div class="timeline-content">
           <button class="timeline-header" aria-expanded="false">
-            <span class="commit-hash">7c1e88b</span>
             <span class="timeline-header-text">
-              <h3>Data Engineer <span class="commit-at">@</span> Comcast</h3>
-              <span class="timeline-loc"><span class="timeline-date">Jul 2023 — Nov 2024</span> · Dayton, OH</span>
+              <span class="timeline-date">Jul 2023 — Nov 2024</span>
+              <h3>Data Engineer, Comcast</h3>
+              <span class="timeline-loc">Dayton, OH</span>
             </span>
             <span class="timeline-chevron" aria-hidden="true"></span>
           </button>
@@ -293,10 +346,10 @@
         <div class="timeline-marker"></div>
         <div class="timeline-content">
           <button class="timeline-header" aria-expanded="false">
-            <span class="commit-hash">4b02d17</span>
             <span class="timeline-header-text">
-              <h3>Data Engineer <span class="commit-at">@</span> Experian</h3>
-              <span class="timeline-loc"><span class="timeline-date">Jul 2020 — Jul 2021</span> · Hyderabad, India</span>
+              <span class="timeline-date">Jul 2020 — Jul 2021</span>
+              <h3>Data Engineer, Experian</h3>
+              <span class="timeline-loc">Hyderabad, India</span>
             </span>
             <span class="timeline-chevron" aria-hidden="true"></span>
           </button>
@@ -314,10 +367,10 @@
         <div class="timeline-marker"></div>
         <div class="timeline-content">
           <button class="timeline-header" aria-expanded="false">
-            <span class="commit-hash">e819a04</span>
             <span class="timeline-header-text">
-              <h3>Data Engineer <span class="commit-at">@</span> Novartis</h3>
-              <span class="timeline-loc"><span class="timeline-date">Jan 2019 — Jul 2020</span> · Hyderabad, India</span>
+              <span class="timeline-date">Jan 2019 — Jul 2020</span>
+              <h3>Data Engineer, Novartis</h3>
+              <span class="timeline-loc">Hyderabad, India</span>
             </span>
             <span class="timeline-chevron" aria-hidden="true"></span>
           </button>
@@ -334,30 +387,50 @@
     </div>
   </section>
 
-  <!-- CERTIFICATIONS — styled as README badges -->
+  <!-- CERTIFICATIONS -->
   <section class="section" id="certifications" data-node="certifications">
-    <div class="file-header">
-      <span class="file-path">~/certs<span class="file-ext">.yml</span></span>
+    <div class="section-head">
+      <span class="section-eyebrow">Certifications</span>
+      <h2>Credentialed across the stack.</h2>
     </div>
-    <div class="badge-row">
-      <span class="badge"><span class="badge-label">microsoft</span><span class="badge-value">Azure Data Engineer Associate</span></span>
-      <span class="badge"><span class="badge-label">microsoft</span><span class="badge-value">Power BI Data Analyst Associate</span></span>
-      <span class="badge"><span class="badge-label">aws</span><span class="badge-value">Certified Data Engineer – Associate</span></span>
-      <span class="badge"><span class="badge-label">aws</span><span class="badge-value">Certified Solutions Architect – Associate</span></span>
-      <span class="badge"><span class="badge-label">databricks</span><span class="badge-value">Associate Developer, Apache Spark</span></span>
-      <span class="badge"><span class="badge-label">snowflake</span><span class="badge-value">SnowPro Core Certification</span></span>
+    <div class="cert-grid">
+      <div class="cert-card">
+        <svg class="cert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.5 5 5.5.8-4 3.9.9 5.5L12 14.7 7.1 17.2l.9-5.5-4-3.9L9.5 7 12 2z"/></svg><span class="cert-issuer">Microsoft</span>
+        <h3>Azure Data Engineer Associate</h3>
+      </div>
+      <div class="cert-card">
+        <svg class="cert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.5 5 5.5.8-4 3.9.9 5.5L12 14.7 7.1 17.2l.9-5.5-4-3.9L9.5 7 12 2z"/></svg><span class="cert-issuer">Microsoft</span>
+        <h3>Power BI Data Analyst Associate</h3>
+      </div>
+      <div class="cert-card">
+        <svg class="cert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.5 5 5.5.8-4 3.9.9 5.5L12 14.7 7.1 17.2l.9-5.5-4-3.9L9.5 7 12 2z"/></svg><span class="cert-issuer">AWS</span>
+        <h3>Certified Data Engineer – Associate</h3>
+      </div>
+      <div class="cert-card">
+        <svg class="cert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.5 5 5.5.8-4 3.9.9 5.5L12 14.7 7.1 17.2l.9-5.5-4-3.9L9.5 7 12 2z"/></svg><span class="cert-issuer">AWS</span>
+        <h3>Certified Solutions Architect – Associate</h3>
+      </div>
+      <div class="cert-card">
+        <svg class="cert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.5 5 5.5.8-4 3.9.9 5.5L12 14.7 7.1 17.2l.9-5.5-4-3.9L9.5 7 12 2z"/></svg><span class="cert-issuer">Databricks</span>
+        <h3>Certified Associate Developer for Apache Spark</h3>
+      </div>
+      <div class="cert-card">
+        <svg class="cert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.5 5 5.5.8-4 3.9.9 5.5L12 14.7 7.1 17.2l.9-5.5-4-3.9L9.5 7 12 2z"/></svg><span class="cert-issuer">Snowflake</span>
+        <h3>SnowPro Core Certification</h3>
+      </div>
     </div>
   </section>
 
-  <!-- PROJECTS — styled as repo cards -->
+  <!-- PROJECTS -->
   <section class="section" id="projects" data-node="projects">
-    <div class="file-header">
-      <span class="file-path">~/projects<span class="file-ext">/</span></span>
+    <div class="section-head">
+      <span class="section-eyebrow">Projects</span>
+      <h2>Outside the day job.</h2>
     </div>
     <div class="projects-grid">
       <article class="project-card">
         <div class="project-card-top">
-          <h3><span class="repo-icon">📁</span> real-time-fraud-detection</h3>
+          <h3>Real-Time Fraud Detection Engine</h3>
         </div>
         <p>
           End-to-end streaming fraud detection using Kafka, PySpark Structured Streaming, and
@@ -371,7 +444,7 @@
       </article>
       <article class="project-card">
         <div class="project-card-top">
-          <h3><span class="repo-icon">📁</span> medallion-lakehouse-platform</h3>
+          <h3>Medallion Lakehouse Platform</h3>
         </div>
         <p>
           Production-grade bronze/silver/gold lakehouse on ADLS Gen2 with automated Great
@@ -385,7 +458,7 @@
       </article>
       <article class="project-card">
         <div class="project-card-top">
-          <h3><span class="repo-icon">📁</span> metadata-driven-ingestion</h3>
+          <h3>Metadata-Driven Ingestion Framework</h3>
         </div>
         <p>
           Configuration-driven Python framework that onboards new data sources via JSON
@@ -399,7 +472,7 @@
       </article>
       <article class="project-card">
         <div class="project-card-top">
-          <h3><span class="repo-icon">📁</span> clinical-trial-data-quality</h3>
+          <h3>Clinical Trial Data Quality System</h3>
         </div>
         <p>
           GxP-compliant data quality and lineage tracking system for clinical trial datasets,
@@ -416,8 +489,9 @@
 
   <!-- EDUCATION -->
   <section class="section" id="education" data-node="education">
-    <div class="file-header">
-      <span class="file-path">~/education<span class="file-ext">.md</span></span>
+    <div class="section-head">
+      <span class="section-eyebrow">Education</span>
+      <h2>Foundations.</h2>
     </div>
     <div class="edu-list">
       <div class="edu-item">
@@ -439,43 +513,32 @@
     </div>
   </section>
 
-  <!-- CONTACT — styled as a shell script -->
+  <!-- CONTACT -->
   <section class="section section-contact" id="contact" data-node="contact">
-    <div class="file-header">
-      <span class="file-path">~/contact<span class="file-ext">.sh</span></span>
+    <div class="section-head">
+      <span class="section-eyebrow">Contact</span>
+      <h2>Let's ship something reliable.</h2>
     </div>
-    <div class="editor-pane contact-editor">
-      <pre class="code-block"><code><span class="ln">1</span><span class="tok-comment">#!/bin/bash</span>
-<span class="ln">2</span><span class="tok-comment"># Open to full-time Data Engineering roles</span>
-<span class="ln">3</span><span class="tok-kw">export</span> <span class="tok-var">EMAIL</span><span class="tok-op">=</span><span class="tok-str">"nithinbobbili07@gmail.com"</span>
-<span class="ln">4</span><span class="tok-kw">export</span> <span class="tok-var">PHONE</span><span class="tok-op">=</span><span class="tok-str">"+1 (740) 909 0444"</span>
-<span class="ln">5</span></code></pre>
-      <div class="contact-links">
-        <a href="mailto:nithinbobbili07@gmail.com" class="btn btn-primary">$ mail --to nithin</a>
-      </div>
-      <div class="social-row">
-        <a href="tel:+17409090444">+1 (740) 909 0444</a>
-        <a href="https://github.com/NithinBobbili" target="_blank" rel="noopener">github</a>
-        <a href="https://linkedin.com/in/nithin-bobbili07" target="_blank" rel="noopener">linkedin</a>
-        <a href="assets/Nithin_Resume.pdf" target="_blank" rel="noopener">resume.pdf</a>
-      </div>
+    <p class="contact-sub">
+      Open to full-time Data Engineering roles. The fastest way to reach me is email.
+    </p>
+    <div class="contact-links">
+      <a href="mailto:nithinbobbili07@gmail.com" class="btn btn-primary">nithinbobbili07@gmail.com</a>
+    </div>
+    <div class="social-row">
+      <a href="tel:+17409090444"><svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>+1 (740) 909 0444</a>
+      <a href="https://github.com/NithinBobbili" target="_blank" rel="noopener"><svg class="social-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.833.092-.647.35-1.088.636-1.338-2.221-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>GitHub</a>
+      <a href="https://linkedin.com/in/nithin-bobbili07" target="_blank" rel="noopener"><svg class="social-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14zM8.34 18.34V10.13H5.67v8.21h2.67zM7 9.05a1.55 1.55 0 1 0 0-3.1 1.55 1.55 0 0 0 0 3.1zm11.34 9.29v-4.71c0-2.52-1.35-3.7-3.15-3.7a2.72 2.72 0 0 0-2.46 1.35h-.04v-1.15h-2.56c.03.72 0 8.21 0 8.21h2.56v-4.58c0-.24.02-.49.09-.66.2-.49.65-1 1.4-1 .99 0 1.39.75 1.39 1.86v4.38h2.77z"/></svg>LinkedIn</a>
+      <a href="assets/Nithin_Resume.pdf" target="_blank" rel="noopener"><svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M12 18v-6M9 15l3 3 3-3"/></svg>Resume</a>
     </div>
   </section>
 
 </main>
 
-<!-- STATUS BAR FOOTER -->
-<footer class="statusbar">
-  <div class="statusbar-inner">
-    <span class="statusbar-item statusbar-branch">⎇ main</span>
-    <span class="statusbar-item" id="statusbar-section">§ hero</span>
-    <span class="statusbar-spacer"></span>
-    <span class="statusbar-item">UTF-8</span>
-    <span class="statusbar-item">Spaces: 2</span>
-    <span class="statusbar-item">© <span id="year"></span> Nithin Bobbiligama</span>
-  </div>
+<footer class="footer">
+  <p>Built &amp; deployed on GitHub Pages · © <span id="year"></span> Nithin Bobbiligama</p>
 </footer>
 
-<script src="script.js?v=9"></script>
+<script src="script.js?v=10"></script>
 </body>
 </html>
