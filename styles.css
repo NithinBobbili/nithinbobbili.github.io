@@ -1157,6 +1157,7 @@ a:focus-visible, .btn:focus-visible {
 .section.in-view .cert-grid .cert-card:hover,
 .section.in-view .projects-grid .project-card:hover {
   transform: translateY(-3px);
+  transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
 }
 
 .skills-grid .skill-card:nth-child(1) { transition-delay: 0.02s; }
