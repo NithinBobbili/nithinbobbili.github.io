@@ -2,11 +2,11 @@
 :root {
   --bg: #161B33;
   --bg-deep: #10142A;
-  --panel: rgba(255, 255, 255, 0.05);
-  --panel-2: rgba(255, 255, 255, 0.08);
+  --panel: rgba(10, 14, 30, 0.55);
+  --panel-2: rgba(10, 14, 30, 0.68);
   --glass-border: rgba(255, 255, 255, 0.10);
-  --text: #EDEFF7;
-  --text-dim: #9AA3C4;
+  --text: #F5F6FB;
+  --text-dim: #B7BFDD;
   --accent: #4FD1C5;
   --accent-dim: #2C7A72;
   --violet: #8B7CF6;
@@ -565,10 +565,18 @@ main, .topnav, .footer, .pipeline-rail { position: relative; z-index: 1; }
   gap: 9px;
 }
 .skill-icon {
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
   flex-shrink: 0;
   color: var(--accent);
+  padding: 6px;
+  box-sizing: content-box;
+  border-radius: 8px;
+  background: linear-gradient(155deg, rgba(255,255,255,0.10), rgba(255,255,255,0.02));
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.14) inset,
+    0 -4px 6px rgba(0,0,0,0.3) inset,
+    0 6px 12px -8px rgba(0,0,0,0.5);
 }
 .tag-row { display: flex; flex-wrap: wrap; gap: 8px; }
 .tag {
@@ -619,6 +627,7 @@ main, .topnav, .footer, .pipeline-rail { position: relative; z-index: 1; }
   color: var(--amber);
   vertical-align: -3px;
   margin-right: 6px;
+  filter: drop-shadow(0 2px 3px rgba(217, 119, 6, 0.5)) drop-shadow(0 1px 0 rgba(255,255,255,0.3));
 }
 .cert-issuer {
   display: inline-block;
@@ -908,6 +917,24 @@ main, .topnav, .footer, .pipeline-rail { position: relative; z-index: 1; }
     0 4px 10px rgba(10,102,194,0.3);
 }
 .social-github:hover, .social-linkedin:hover { color: var(--text); }
+
+.icon-badge-neutral {
+  background: linear-gradient(155deg, rgba(255,255,255,0.10) 0%, rgba(255,255,255,0.02) 100%);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.14) inset,
+    0 -5px 8px rgba(0,0,0,0.3) inset,
+    0 6px 14px -8px rgba(0,0,0,0.5);
+}
+.icon-badge-neutral .social-icon { color: var(--text-dim); }
+.social-phone:hover .icon-badge-neutral {
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.2) inset,
+    0 -5px 8px rgba(0,0,0,0.25) inset,
+    0 10px 20px -8px rgba(79,209,197,0.35);
+}
+.social-phone:hover .icon-badge-neutral .social-icon { color: var(--accent); }
+.social-phone:hover .icon-badge { transform: perspective(400px) rotateX(8deg) rotateY(-10deg) translateY(-3px) scale(1.06); }
+.social-phone:hover { color: var(--accent); }
 @media (prefers-reduced-motion: reduce) {
   .icon-badge, .social-github:hover .icon-badge, .social-linkedin:hover .icon-badge { transition: none; transform: none; }
 }
