@@ -27,9 +27,10 @@ const revealObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.15 });
 sections.forEach((s) => revealObserver.observe(s));
 
-// Active nav link highlighting
-const navLinks = document.querySelectorAll('.nav-links a');
+// Active nav tab highlighting + status bar section indicator
+const navLinks = document.querySelectorAll('.tab-bar .tab');
 const navMap = new Map();
+const statusbarSection = document.getElementById('statusbar-section');
 navLinks.forEach((link) => {
   const id = link.getAttribute('href').replace('#', '');
   navMap.set(id, link);
@@ -38,15 +39,18 @@ navLinks.forEach((link) => {
 const navObserver = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
     const link = navMap.get(entry.target.id);
-    if (!link) return;
     if (entry.isIntersecting) {
-      navLinks.forEach((l) => l.classList.remove('active'));
-      link.classList.add('active');
+      if (link) {
+        navLinks.forEach((l) => l.classList.remove('active'));
+        link.classList.add('active');
+      }
+      if (statusbarSection) statusbarSection.textContent = '§ ' + entry.target.id;
     }
   });
 }, { rootMargin: '-40% 0px -50% 0px' });
 
 document.querySelectorAll('main .section').forEach((s) => navObserver.observe(s));
+document.querySelector('.hero') && navObserver.observe(document.querySelector('.hero'));
 
 // Experience accordion
 document.querySelectorAll('.timeline-header').forEach((header) => {
@@ -56,18 +60,6 @@ document.querySelectorAll('.timeline-header').forEach((header) => {
     header.setAttribute('aria-expanded', String(isOpen));
   });
 });
-
-// Subtle cursor-reactive glow in hero
-const hero = document.querySelector('.hero');
-if (hero && window.matchMedia('(pointer: fine)').matches) {
-  hero.addEventListener('mousemove', (e) => {
-    const rect = hero.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width) * 100;
-    const y = ((e.clientY - rect.top) / rect.height) * 100;
-    hero.style.setProperty('--mx', x + '%');
-    hero.style.setProperty('--my', y + '%');
-  });
-}
 
 // Animated stat counters
 const counters = document.querySelectorAll('.hero-stat-num[data-count]');
@@ -90,21 +82,6 @@ const countObserver = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.6 });
 counters.forEach((c) => countObserver.observe(c));
-
-// Tilt hover on cards
-if (window.matchMedia('(pointer: fine)').matches) {
-  document.querySelectorAll('.skill-card, .project-card, .cert-card').forEach((card) => {
-    card.addEventListener('mousemove', (e) => {
-      const rect = card.getBoundingClientRect();
-      const x = (e.clientX - rect.left) / rect.width - 0.5;
-      const y = (e.clientY - rect.top) / rect.height - 0.5;
-      card.style.transform = `perspective(600px) rotateX(${(-y * 6).toFixed(2)}deg) rotateY(${(x * 6).toFixed(2)}deg) translateY(-2px)`;
-    });
-    card.addEventListener('mouseleave', () => {
-      card.style.transform = '';
-    });
-  });
-}
 
 // Command palette
 (function () {
