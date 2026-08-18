@@ -22,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=19">
+<link rel="stylesheet" href="styles.css?v=20">
 </head>
 <body>
 
@@ -457,21 +457,26 @@
           <span class="featured-tag">Featured</span>
           <div class="project-card-top">
             <h3>Real-Time Fraud Detection Engine</h3>
+            <a href="https://github.com/NithinBobbili/fraud-detection-engine" target="_blank" rel="noopener" class="project-repo-link" aria-label="View source on GitHub">
+              <span class="icon-badge icon-badge-github"><svg class="social-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.833.092-.647.35-1.088.636-1.338-2.221-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg></span>
+              <span class="project-repo-label">View source</span>
+            </a>
           </div>
           <p>
             End-to-end streaming fraud detection using Kafka, PySpark Structured Streaming, and
-            Delta Lake. ML feature pipelines with sliding-window aggregations and anomaly scoring
-            cut false positive rates by 22% versus batch-based baselines.
+            a hybrid rule + IsolationForest engine over sliding-window account behavior. Fully
+            tested (27 tests, including Spark/pandas feature-parity checks) with an honest,
+            reproducible benchmark measuring real lift over a naive baseline.
           </p>
           <div class="tag-row">
             <span class="tag tag-sm">Kafka</span><span class="tag tag-sm">PySpark</span>
-            <span class="tag tag-sm">Delta Lake</span><span class="tag tag-sm">Streaming</span>
+            <span class="tag tag-sm">Structured Streaming</span><span class="tag tag-sm">scikit-learn</span>
           </div>
         </div>
         <div class="project-card-featured-visual">
-          <div class="featured-metric"><span>False positive reduction</span><span class="featured-metric-val">−22%</span></div>
-          <div class="featured-metric"><span>Streaming engine</span><span class="featured-metric-val">PySpark</span></div>
-          <div class="featured-metric"><span>Storage layer</span><span class="featured-metric-val">Delta Lake</span></div>
+          <div class="featured-metric"><span>False positive reduction</span><span class="featured-metric-val">−65%</span></div>
+          <div class="featured-metric"><span>Precision / Recall</span><span class="featured-metric-val">62% / 81%</span></div>
+          <div class="featured-metric"><span>Tests passing</span><span class="featured-metric-val">27/27</span></div>
           <div class="featured-metric"><span>Detection mode</span><span class="featured-metric-val">Real-time</span></div>
         </div>
       </article>

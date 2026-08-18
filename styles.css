@@ -1311,7 +1311,32 @@ html { scrollbar-width: thin; scrollbar-color: var(--accent-dim) var(--bg-deep);
   padding: 32px;
   align-items: center;
 }
-.project-card-featured .project-card-top { margin-bottom: 14px; }
+.project-card-featured .project-card-top {
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.project-repo-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  transition: color 0.2s ease;
+}
+.project-repo-link:hover { color: var(--text); }
+.project-repo-link .icon-badge { width: 28px; height: 28px; }
+.project-repo-link .icon-badge .social-icon { width: 14px; height: 14px; }
+.project-repo-link:hover .icon-badge {
+  transform: perspective(400px) rotateX(8deg) rotateY(-10deg) translateY(-2px) scale(1.06);
+}
+@media (max-width: 500px) {
+  .project-repo-label { display: none; }
+}
 .project-card-featured .project-card-top h3 { font-size: 22px; }
 .project-card-featured p { font-size: 15px; margin-bottom: 20px; }
 .featured-tag {
