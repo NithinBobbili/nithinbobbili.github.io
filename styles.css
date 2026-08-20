@@ -1331,6 +1331,8 @@ html { scrollbar-width: thin; scrollbar-color: var(--accent-dim) var(--bg-deep);
 .project-repo-link:hover { color: var(--text); }
 .project-repo-link .icon-badge { width: 28px; height: 28px; }
 .project-repo-link .icon-badge .social-icon { width: 14px; height: 14px; }
+.icon-badge-sm { width: 24px !important; height: 24px !important; }
+.icon-badge-sm .social-icon { width: 12px !important; height: 12px !important; }
 .project-repo-link:hover .icon-badge {
   transform: perspective(400px) rotateX(8deg) rotateY(-10deg) translateY(-2px) scale(1.06);
 }
